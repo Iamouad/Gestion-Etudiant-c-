@@ -1,0 +1,9 @@
+C:\Users\Mouad\source\repos\MiniProjet\MiniProjet\bin\Debug\MiniProjet.exe.config
+C:\Users\Mouad\source\repos\MiniProjet\MiniProjet\bin\Debug\MiniProjet.exe
+C:\Users\Mouad\source\repos\MiniProjet\MiniProjet\bin\Debug\MiniProjet.pdb
+C:\Users\Mouad\source\repos\MiniProjet\MiniProjet\obj\Debug\MiniProjet.csprojAssemblyReference.cache
+C:\Users\Mouad\source\repos\MiniProjet\MiniProjet\obj\Debug\MiniProjet.Form1.resources
+C:\Users\Mouad\source\repos\MiniProjet\MiniProjet\obj\Debug\MiniProjet.Properties.Resources.resources
+C:\Users\Mouad\source\repos\MiniProjet\MiniProjet\obj\Debug\MiniProjet.csproj.GenerateResource.cache
+C:\Users\Mouad\source\repos\MiniProjet\MiniProjet\obj\Debug\MiniProjet.exe
+C:\Users\Mouad\source\repos\MiniProjet\MiniProjet\obj\Debug\MiniProjet.pdb
