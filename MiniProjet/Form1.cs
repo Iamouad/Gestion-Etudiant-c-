@@ -44,7 +44,28 @@ namespace MiniProjet
             {
                 listeCne.Items.Add(etd.cne);
             }
+            CrystalReport1 cr1 = new CrystalReport1();
+            DataSet ds = new DataSet();
+            var x = from etd in cl.etudiants
+                    select etd;
+            DataTable dt = new DataTable();
+            dt.TableName = "etudiants";
+            //dt = x as DataTable;
             
+            
+            SqlDataAdapter dap = new SqlDataAdapter();
+            SqlCommand cmd = new SqlCommand("select * from etudiant", con);
+          
+            dap.SelectCommand = cmd;
+            dap.Fill(dt);
+            ds.Tables.Add(dt);
+
+            cr1.SetDataSource(ds.Tables["etudiants"]);
+            crystalReportViewer1.ReportSource = cr1;
+            crystalReportViewer1.Refresh();
+
+
+
         }
 
         public void ListFiliere()
