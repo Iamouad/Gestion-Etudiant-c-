@@ -207,7 +207,7 @@ namespace MiniProjet
                 if (a.Sexe == 'F')
                     female.Checked = true;
                 else
-                male.Checked = true;
+                    male.Checked = true;
                 dateN.Text = a.DateNaissance;
                 adresse.Text = a.Adresse;
                 telephone.Text = a.Telephone;
@@ -215,8 +215,13 @@ namespace MiniProjet
                       join f in cl.Filieres on
                       etd.id_fil equals f.id_Filiere
                       where etd.id_fil == a.Filiere
-                      select f.nom_Filiere).SingleOrDefault();
-            filiere.Text = fil.ToString();
+                      select f);
+            foreach(Filiere f in fil)
+            {
+                filiere.Text = f.nom_Filiere;
+                break;
+            }
+            
         }
 
         private void chargerDonnees_Click(object sender, EventArgs e)
