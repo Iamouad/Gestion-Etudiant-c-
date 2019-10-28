@@ -44,28 +44,12 @@ namespace MiniProjet
             {
                 listeCne.Items.Add(etd.cne);
             }
-            CrystalReport1 cr1 = new CrystalReport1();
-            DataSet ds = new DataSet();
-            var x = from etd in cl.etudiants
-                    select etd;
-            DataTable dt = new DataTable();
-            dt.TableName = "etudiants";
-            //dt = x as DataTable;
-            
-            
-            SqlDataAdapter dap = new SqlDataAdapter();
-            SqlCommand cmd = new SqlCommand("select * from etudiant", con);
-          
-            dap.SelectCommand = cmd;
-            dap.Fill(dt);
-            ds.Tables.Add(dt);
 
-            cr1.SetDataSource(ds.Tables["etudiants"]);
-            crystalReportViewer1.ReportSource = cr1;
-            crystalReportViewer1.Refresh();
+            fillReport();
+            chartFill();
 
-
-
+            timer1.Interval = 50000;
+            timer1.Start();
         }
 
         public void ListFiliere()
@@ -127,6 +111,48 @@ namespace MiniProjet
 
         }
 
+        public void chartFill()
+        {
+            
+            var fils = from f in cl.Filieres
+                       select f;
+            foreach(Filiere f in fils)
+            {
+                var nbEtdParFil = from etd in cl.etudiants
+                                  where etd.id_fil == f.id_Filiere
+                                  select etd;
+                int nbEtd = 0;
+                foreach(etudiant etd in nbEtdParFil)
+                {
+                    nbEtd++;
+                }
+                chart1.Series["Nombre etudiants"].Points.AddXY(f.nom_Filiere, nbEtd);
+                
+            }
+        }
+
+        public void fillReport()
+        {
+            CrystalReport1 cr1 = new CrystalReport1();
+            DataSet ds = new DataSet();
+            var x = from etd in cl.etudiants
+                    select etd;
+            DataTable dt = new DataTable();
+            dt.TableName = "etudiants";
+            //dt = x as DataTable;
+
+
+            SqlDataAdapter dap = new SqlDataAdapter();
+            SqlCommand cmd = new SqlCommand("select * from etudiant", con);
+
+            dap.SelectCommand = cmd;
+            dap.Fill(dt);
+            ds.Tables.Add(dt);
+
+            cr1.SetDataSource(ds.Tables["etudiants"]);
+            crystalReportViewer1.ReportSource = cr1;
+            crystalReportViewer1.Refresh();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             
@@ -277,6 +303,13 @@ namespace MiniProjet
             {
                 MessageBox.Show("Etudiant existe dèja");
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            fillReport();
+            //                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       7chartFill();
+
         }
     }
 }
